@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./OL_SDK/include-openlayers-local.js"></script>
+    <script src="./libs/gaode.js"></script>
+    <script src="https://lib.baomitu.com/jquery/2.2.4/jquery.js"></script>
+    <style>
+        #clear {
+            width: 200px;
+            height: 50px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="clear" >清除数据</button>
+    <div id="map">
+    </div>
+    <script>
+        var map = new ol.Map({
+            target: "map",
+            layers: [gaode],
+            view: new ol.View({
+                projection: 'EPSG:4326',
+                center: [114.30, 30.50],
+                zoom: 4
+            })
+        })
+        // 1.构建一个空的实例数据源的图层
+        // 如果source中没数据，可不写Features
+        const style = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 10,
+                fill: new ol.style.Fill({
+                    color: "#333"
+                })
+            })
+        })
+        const source = new ol.source.Vector({
+
+        })
+
+        const layer = new ol.layer.Vector({
+            source,
+            style
+        })
+        map.addLayer(layer)
+        // 2.点击事件创建要素，将要素添加到矢量数据源中
+        map.on("click", (e) => {
+            // debugger//打断点
+            var position = e.coordinate
+            // console.log(e.coordinate);
+            let point = new ol.Feature({
+                geometry: new ol.geom.Point(position)
+            })
+            console.log(layer);
+            // source.addFeature(point)
+            source.addFeatures([point])
+        })
+
+        $('#clear').click(function(){
+            source.clear();
+        })
+       
+    </script>
+</body>
+
+</html>

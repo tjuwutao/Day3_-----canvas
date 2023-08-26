@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./OL_SDK/include-openlayers-local.js"></script>
+    <script src="./libs/gaode.js"></script>
+</head>
+<body>
+    <div id="map">
+    </div>
+<script>
+    var map = new ol.Map({
+        target:"map",
+        layers:[gaode],
+        view:new ol.View({
+            projection:'EPSG:4326',
+            center:[114.30,30.50],
+            zoom:4
+        })
+    })
+    // 1,创建一个要素=>geometry+style
+    var style=new ol.style.Style({
+        // 如果是点要素，样式只有image属性是有用的
+        image:new ol.style.Circle({
+            radius:17,
+            fill:new ol.style.Fill({
+                color:"#333"
+            })
+        })
+    })
+    var point=new ol.Feature({
+        geometry:new ol.geom.Point([114.30,30.50]),
+        // style，无效
+    })
+    var point1=new ol.Feature({
+        geometry:new ol.geom.Point([120.30,30.50]),
+        // style
+    })
+    // point.setStyle((style))
+    // console.log(point);
+    // 2，将要素添加到数据源
+    const source=new ol.source.Vector({
+        features:[point,point1]
+    })
+    // 3.将数据添加到图层
+    const layer=new ol.layer.Vector({
+        source,
+        // style,有效
+    //     style:new ol.style.Style({
+    //     // 如果是点要素，样式只有image属性是有用的
+    //     image:new ol.style.Circle({
+    //         radius:17,
+    //         fill:new ol.style.Fill({
+    //             color:"#333"
+    //         })
+    //     })
+    // })
+    })
+    // console.log(layer);
+    layer.setStyle(style)//有效
+    // 将样式设置给图层
+    // 4,将图层添加到地图容器
+    map.addLayer(layer)
+</script>
+</body>
+</html>

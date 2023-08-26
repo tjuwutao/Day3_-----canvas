@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./OL_SDK/include-openlayers-local.js"></script>
+    <script src="./libs/gaode.js"></script>
+</head>
+<body>
+    <div id="map">
+    </div>
+<script>
+    var map = new ol.Map({
+        target:"map",
+        layers:[gaode],
+        view:new ol.View({
+            projection:'EPSG:4326',
+            center:[114.30,30.50],
+            zoom:4
+        })
+    })
+    const style=new ol.style.Style({
+        // 线只需要设置stroke属性
+        stroke:new ol.style.Stroke({
+            color:"#333",
+            width:3,
+        })
+    })
+    // 创建线要素
+    const lineString=new ol.Feature({
+        geometry:new ol.geom.LineString([
+            [114.3,30.50],[120,30.50]
+        ])
+    })
+    const source=new ol.source.Vector({
+        features:[lineString]
+    })
+    const layer=new ol.layer.Vector({
+        source,
+        style
+    })
+    
+    map.addLayer(layer)
+</script>
+</body>
+</html>
