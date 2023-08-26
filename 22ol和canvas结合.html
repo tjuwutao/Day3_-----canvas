@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./OL_SDK/include-openlayers-local.js"></script>
+    <script src="./libs/gaode.js"></script>
+</head>
+<body>
+    <div id="map">
+    </div>
+<script>
+    var map = new ol.Map({
+        target:"map",
+        layers:[gaode],
+        view:new ol.View({
+            projection:'EPSG:4326',
+            center:[114.30,30.50],
+            zoom:4
+        })
+    })
+    // Tips:canvas作为样式设置给图层或者要素
+    // style
+    let size=100
+    const canvas=document.createElement("canvas")
+    canvas.width=size
+    canvas.height=size
+    let radius=size/4
+    const ctx=canvas.getContext("2d")
+    // 设置路径
+    ctx.beginPath()
+    ctx.arc(size/2,size/2,radius,0,Math.PI*2)
+    ctx.closePath()
+    ctx.fillStyle="#652e80"
+    ctx.fill()
+    // 设置样式
+    const style=new ol.style.Style({
+        image:new ol.style.Icon({
+            img:canvas,
+            imgSize:[canvas.width,canvas.height]
+        })
+    })
+    const point =new ol.Feature({
+        geometry:new ol.geom.Point([114.30,30.50])
+    })
+    // point.setStyle(style)
+    const source=new ol.source.Vector({
+        features:[point]
+    })
+    const layer=new ol.layer.Vector({
+        source,
+        style
+    })
+    map.addLayer(layer)
+    console.log(canvas);
+</script>
+</body>
+</html>

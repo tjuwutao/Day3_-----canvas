@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+        /* 
+            什么是canvas?
+            html5新增的元素,用来绘制图形的，区别于css的地方
+            他必须使用js实现绘制
+            canvas可以绘制2d,3d图层
+
+            */    
+        // 1.获取canvas元素————h画布
+        /* 
+        canvas--layer
+        ctx--source
+        */
+        const canvas=document.getElementById('canvas')
+        // 2.获取绘制上下文
+        const ctx=canvas.getContext("2d")
+        ctx.fillStyle="#652e80"
+        /* 
+        第一个参数和第二个参数 x,y偏移量
+        第三个参数和第四个 width,height
+        */
+    //    填充矩形
+        ctx.fillRect(10,50,100,200)
+    </script>
+</body>
+</html>

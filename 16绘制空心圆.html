@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+        // 1.获取画布
+        let canvas=document.getElementById('canvas')
+        // 2.获取绘制上下文
+        let ctx=canvas.getContext("2d")
+        // 3.执行绘制
+        // 设置开始路径
+        ctx.beginPath()
+        // 第一个参数和第二个参数表示中心点
+        // 第三个参数 圆的半径
+        // 第四个参数表示 开始的弧度
+        // 第五个参数表示结束的弧度
+        ctx.arc(50,50,50,0,Math.PI*2)
+        ctx.closePath()
+        ctx.stroke()
+    </script>
+</body>
+</html>

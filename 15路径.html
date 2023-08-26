@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+        // 路径  所谓路径就是一段连续的坐标
+        // 1.获取画布
+        const canvas=document.getElementById("canvas")
+        //2. 获取绘制上下文
+        const ctx=canvas.getContext("2d")
+        // 3.设置路径
+        // 设置路径的宽度
+        // ctx.lineWidth=5
+        ctx.moveTo(10,10)//起点坐标
+        ctx.lineTo(100,100)//终点坐标
+        // ctx.strokeStyle="#ff2d51"
+        
+        // 线必须使用stroke方法执行闭合
+        ctx.stroke()
+    </script>
+</body>
+</html>
