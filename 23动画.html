@@ -39,10 +39,17 @@
         */
         function draw() {
             ctx.clearRect(0,0,size,size)//清空画布
+            // 第一个圆
             ctx.beginPath()
             ctx.arc(size / 2, size / 2, radius, 0, Math.PI * 2)
             ctx.closePath()
             ctx.fillStyle = "#652e80"
+            ctx.fill()
+            // 第二个圆
+            ctx.beginPath()
+            ctx.arc(size / 2, size / 2, 25, 0, Math.PI * 2)
+            ctx.closePath()
+            ctx.fillStyle = "red"
             ctx.fill()
             if(radius>50){
                 increase=false
